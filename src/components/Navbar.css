@@ -1,0 +1,16 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(50, 50, 50);
+  padding: 5px;
+}
+.oculto {
+  display: none;
+}
+.navProfile {
+  display: flex;
+  gap: 10px;
+}
+.navProfile {
+  color: white;
+}

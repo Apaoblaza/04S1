@@ -1,0 +1,5 @@
+.btnflex {
+  display: flex;
+  gap: 5px;
+  justify-content: space-around;
+}
