@@ -2,13 +2,39 @@ import React from "react";
 import Header from "./Header";
 import Cardpizza from "./Cardpizza";
 import "./Home.css";
+import { pizzas } from "../assets/pizzas";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const Home = () => {
+  
+    
+  
+
   return (
     <>
       <Header />
+      <Container fluid>
+        
       <div className="productos">
-        <Cardpizza
+        {pizzas.map((pizza)=>(
+          <Cardpizza
+          name={pizza.name}
+          price={pizza.price}
+          ingredients={pizza.ingredients}
+          img={pizza.img}
+          desc={pizza.desc}
+          />
+          
+        ))}
+      </div>
+      </Container>
+
+        
+
+        
+        {/* <Cardpizza
           name="Napolitana"
           price={5950}
           ingredients={["mozzarella", "tomates", "jamón", "orégano"]}
@@ -25,8 +51,7 @@ const Home = () => {
           price={5950}
           ingredients={["mozzarella", "pepperoni", "orégano"]}
           img="https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_com.jpg?alt=media&token=e7cde87a-08d5-4040-ac54-90f6c31eb3e3"
-        />
-      </div>
+        /> */}
     </>
   );
 };

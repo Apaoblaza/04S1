@@ -1,5 +1,8 @@
 .productos {
   display: flex;
   justify-content: space-around;
-  margin-top: 200px;
+  /* margin-top: 200px; */
+  flex-wrap: wrap;
+  gap:16px
+
 }
