@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import Home from "./components/Home";
+// import Home from "./components/Home";
+import Cart from "./components/Cart";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 // import RegisterPage from "./components/Registerpage";
@@ -13,9 +14,10 @@ function App() {
   return (
     <>
       <Navbar />
-      <Home />
+      {/* <Home /> */}
       {/* <RegisterPage/> */}
       {/* <LoginPage/> */}
+      <Cart/>
       <Footer />
     </>
   );

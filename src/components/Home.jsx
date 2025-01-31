@@ -4,8 +4,7 @@ import Cardpizza from "./Cardpizza";
 import "./Home.css";
 import { pizzas } from "../assets/pizzas";
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+
 
 const Home = () => {
   

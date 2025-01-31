@@ -1,0 +1,20 @@
+.cartImg{
+    width:100px
+}
+
+.cartStyle{
+    height:100vh;
+
+}
+.cartContainer{
+    background-color: white;
+    align-items: center;
+    align-content: center;
+    margin-top: 30px;
+    gap:16px;
+    background-color:white;
+    color:black;
+}
+.cartTotal{ 
+    text-align: right;
+}
