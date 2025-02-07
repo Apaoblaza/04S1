@@ -1,0 +1,23 @@
+.btnflex {
+    display: flex;
+    gap: 5px;
+    justify-content: space-around;
+  }
+  .pizzaDesc{
+    background-color:rgb(0,0,0,.8);
+    color:white;
+    display:flex;
+    flex-direction: column; 
+    align-items: center;
+    padding-top: 25px;
+  }
+  .pizzaImg{
+    width: 40%;
+  }
+  .pizzaDescP{
+    font-size:x-large
+  }
+  .pizzaButtons{
+    display:flex;
+    flex-direction: row;
+  }

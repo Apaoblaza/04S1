@@ -1,15 +1,13 @@
-import { useState } from "react";
 import "./App.css";
 // import Home from "./components/Home";
-import Cart from "./components/Cart";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-// import RegisterPage from "./components/Registerpage";
-// import LoginPage from "./components/LoginPage";
 import "bootstrap/dist/css/bootstrap.min.css";
+// import Cardpizza from "./components/Cardpizza";
+import Pizza from "./components/Pizza";
 
 function App() {
-  const [count, setCount] = useState(0);
+ 
 
   return (
     <>
@@ -17,7 +15,8 @@ function App() {
       {/* <Home /> */}
       {/* <RegisterPage/> */}
       {/* <LoginPage/> */}
-      <Cart/>
+      {/* <Cart/> */}
+      <Pizza/>
       <Footer />
     </>
   );
