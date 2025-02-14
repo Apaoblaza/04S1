@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Header from "./Header";
-import Cardpizza from "./Cardpizza";
+import Header from "../components/Header";
+import Cardpizza from "../components/Cardpizza";
 import "./Home.css";
 import Container from "react-bootstrap/Container";
 

@@ -10,7 +10,8 @@ const Cardpizza = (props) => {
       <Card.Body>
         <Card.Title>{props.name}</Card.Title>
         <Card.Text>
-          <p className="pizzaDesc">{props.desc}</p>
+          {props.desc}
+          <br/>
           <strong>Ingredientes:</strong>
           <ul>
             {props.ingredients.map((ingrediente, index) => (

@@ -5,7 +5,7 @@ nav {
   padding: 5px;
 }
 .oculto {
-  display: none;
+  display: none!important
 }
 .navProfile {
   display: flex;
