@@ -1,55 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import Header from "../components/Header";
 import Cardpizza from "../components/Cardpizza";
 import "./Home.css";
 import Container from "react-bootstrap/Container";
+import { CartContext } from "../context/CartContext";
 
 const Home = () => {
-  const [pizzas, setPizzas] = useState([]); 
+    const { pizzas, addPizza } = useContext(CartContext); // Pizzas disponibles y función para agregar
 
-
-
-  const fetchPizzas = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/api/pizzas"); 
-      if (!response.ok) {
-        throw new Error("Error al obtener las pizzas");
-      }
-      const data = await response.json(); 
-      setPizzas(data); 
-    } catch (error) {
-      console.error("Error al obtener las pizzas", error);
-      setError(error.message);
-    } 
-  };
-
-  useEffect(() => {
-    fetchPizzas(); 
-  }, []);
-
-  return (
-    <>
-      <Header />
-      <Container fluid>
-        <div className="productos">
-          {pizzas.length > 0 ? (
-            pizzas.map((pizza) => (
-              <Cardpizza
-                key={pizza.id || pizza.name} // Asegura una clave única
-                name={pizza.name}
-                price={pizza.price}
-                ingredients={pizza.ingredients}
-                img={pizza.img}
-                desc={pizza.desc}
-              />
-            ))
-          ) : (
-            <p>No hay pizzas disponibles.</p>
-          )}
-        </div>
-      </Container>
-    </>
-  );
+    return (
+        <>
+            <Header />
+            <Container fluid>
+                <div className="productos">
+                    {pizzas.length > 0 ? (
+                        pizzas.map((pizza) => (
+                            <Cardpizza
+                                key={pizza.id}
+                                id={pizza.id}
+                                name={pizza.name}
+                                price={pizza.price}
+                                ingredients={pizza.ingredients}
+                                img={pizza.img}
+                                desc={pizza.desc}
+                                addPizza={addPizza} // Pasamos la función para agregar al carrito
+                            />
+                        ))
+                    ) : (
+                        <p>No hay pizzas disponibles.</p>
+                    )}
+                </div>
+            </Container>
+        </>
+    );
 };
 
 export default Home;
