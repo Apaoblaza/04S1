@@ -2,6 +2,7 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import "./Cardpizza.css";
+import { Link } from "react-router-dom";
 
 const Cardpizza = (props) => {
   const handleAddToCart = () => {
@@ -29,7 +30,7 @@ const Cardpizza = (props) => {
           <hr />
         </Card.Text>
         <div className="btnflex">
-          <Button variant="dark">Ver más</Button>
+          <Button variant="dark"><Link to={`/pizza/${props.id}`} className="text-decoration-none text-white">Ver más</Link></Button>
           <Button variant="success" onClick={handleAddToCart}>
             Agregala por{" "}
             {props.price.toLocaleString("es-CL", {

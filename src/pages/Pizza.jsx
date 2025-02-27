@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+import {useParams, useNavigate} from "react-router-dom"
 import "./Pizza.css";
 
 const Pizza = () => {
-  const pizzaId = "p001"; // ID fijo por ahora
+  // const pizzaId = "p001"; // ID fijo por ahora
+  const {id:pizzaId}=useParams();
+  const navigate=useNavigate();
   const [pizza, setPizza] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    console.log("ID obtenido de la URL:", pizzaId); // Debug
     const fetchPizza = async () => {
       try {
         const response = await fetch(`http://localhost:5000/api/pizzas/${pizzaId}`);
@@ -26,7 +29,7 @@ const Pizza = () => {
     };
 
     fetchPizza();
-  }, []);
+  }, [pizzaId]);
 
   if (loading) return <p>Cargando pizza...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -34,7 +37,7 @@ const Pizza = () => {
 
   return (
     <div className="pizzaDesc">
-        <img className="pizzaImg"src={pizza.img}/>      
+        <img className="pizzaImg"src={pizza.img} alt={pizza.name}/>      
         <h1>{pizza.name}</h1>
         <p className="pizzaDescP">{pizza.desc}</p>
             <strong className="pizzaDescP">Ingredientes:</strong>
@@ -52,7 +55,7 @@ const Pizza = () => {
             <div className="pizzaButtons">
 
           <Button variant="success">Agregar</Button>
-          <Button variant="success" >
+          <Button variant="success" onClick={()=>navigate("/")}>
             Volver
           </Button>
             </div>

@@ -7,7 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 const Cart = () => {
-    const { cart, addPizza, removePizza, totalAmount } = useContext(CartContext);
+    const { cart, addPizza, removePizza, totalAmount,token,logout } = useContext(CartContext);
 
     return (
         <div className="cartStyle">
@@ -47,7 +47,7 @@ const Cart = () => {
                 <hr />
                 <div className="cartTotal">
                     <h2>Total: ${totalAmount.toLocaleString("es-ES")}</h2>
-                    <Button variant="secondary" className="m-1">
+                    <Button variant="secondary" className="m-1" disabled={!token}>
                         Pagar
                     </Button>
                     <Button variant="secondary" className="m-1">

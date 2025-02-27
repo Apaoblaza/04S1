@@ -5,6 +5,7 @@ export const CartContext = createContext();
 const CartProvider = ({ children }) => {
     const [pizzas, setPizzas] = useState([]);  // Pizzas disponibles (Home)
     const [cart, setCart] = useState([]);      // Pizzas en el carrito
+    const [token,setToken]=useState(true);
 
     // Cargar las pizzas desde la API y establecerlas en el contexto
     const fetchPizzas = async () => {
@@ -60,8 +61,13 @@ const CartProvider = ({ children }) => {
     // Calcular el total del carrito
     const totalAmount = cart.reduce((total, pizza) => total + pizza.price * pizza.count, 0);
 
+    const logout=()=>{
+        console.log("Cerrando sesión...");
+        setToken(false);
+    };
+
     return (
-        <CartContext.Provider value={{ pizzas, cart, addPizza, removePizza, totalAmount }}>
+        <CartContext.Provider value={{ pizzas, cart, addPizza, removePizza, totalAmount,logout,token }}>
             {children}
         </CartContext.Provider>
     );
