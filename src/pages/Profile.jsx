@@ -1,16 +1,32 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Button from "react-bootstrap/Button";
-import "./Profile.css"
+import { UserContext } from "../context/UserContext";
+import "./Profile.css";
 
 const Profile = () => {
+  const { user, logout, getProfile, token } = useContext(UserContext);
+
+  useEffect(() => {
+    if (!user && token) {
+      getProfile(); // recupera el perfil si hay token pero no usuario cargado aún
+    }
+  }, [user, token, getProfile]);
+
   return (
     <div className="profile-container">
       <h2>Perfil de Usuario</h2>
-      <p><strong>Email:</strong></p>
-      <Button variant="danger" onClick={() => alert("Cerrar sesión aún no implementado")}>
-        Cerrar Sesión
-      </Button>
+      {user ? (
+        <>
+          <p><strong>Email:</strong> {user.email}</p>
+          <Button variant="danger" onClick={logout}>
+            Cerrar Sesión
+          </Button>
+        </>
+      ) : (
+        <p>Debes logearte</p>
+      )}
     </div>
   );
 };
+
 export default Profile;

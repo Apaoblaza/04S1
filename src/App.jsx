@@ -12,10 +12,10 @@ import Profile from "./pages/Profile";
 import { Route, Routes, Navigate } from "react-router-dom";
 import CartProvider,{CartContext} from "./context/CartContext";
 import { useContext } from "react";
-import { AuthContext } from "./context/AuthContext";
+import { UserContext } from "./context/UserContext";
 
 function App() {
-  const {login}=useContext(AuthContext);
+  const {login}=useContext(UserContext);
   return (
     <CartProvider>
       <Navbar />

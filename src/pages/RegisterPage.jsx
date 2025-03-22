@@ -1,62 +1,75 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../context/UserContext"; // Ajusta el path según tu estructura
 import "./RegisterPage.css";
 import Button from "react-bootstrap/Button";
 
 const RegisterPage = () => {
-    const [users,setUsers]=useState({
-        mail:'',
-        pass:'',
-        pass2:''
-    })
-    const handleChange=(e)=>{        
-        setUsers({...users,[e.target.name]:e.target.value})
-       }
-    const handleResult=()=>{
-        if (users.mail===""||users.pass===""||users.pass2==="") {
-            alert("deben llenarse todos los campos para registrarse")
-        } else if (users.pass!==users.pass2) {
-            alert("Los passwords deben ser iguales")            
-        } else if(users.pass.length<6){
-            alert("El Password debe tener al menos 6 caracteres")
-        }else{
-            console.log("Los datos son", users)
+    const { register } = useContext(UserContext);
 
-        }}
-        
-  return (
-    <>
-    <div className="RegisterPage">
-    <h1 className="regh1">Register</h1>
-    <h2 className="regh2">Ingresa tu mail</h2>
-    <input 
-    className="regInput"
-    type='text' 
-    placeholder='Escribe tu correo electrónico' 
-    name='mail'
-    value={users.mail}
-    onChange={handleChange}
-    />
-    <h2 className="regh2">Ingresa y Repite tu contraseña</h2>
-    <input 
-    className="regInput"
-    type='text' 
-    placeholder='Escribe tu password' 
-    name='pass'
-    value={users.pass}
-    onChange={handleChange}
-    />
-    <input 
-    className="regInput"
-    type='text' 
-    placeholder='Confirma tu password' 
-    name='pass2'
-    value={users.pass2}
-    onChange={handleChange}
-    />
-     <Button variant="success" onClick={handleResult} className="regButton">Registrarse</Button>
-    </div>
-    </>
-  )
-}
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+        password2: ''
+    });
 
-export default RegisterPage
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleResult = async () => {
+        const { email, password, password2 } = formData;
+
+        if (!email || !password || !password2) {
+            alert("Deben llenarse todos los campos para registrarse");
+        } else if (password !== password2) {
+            alert("Las contraseñas deben ser iguales");
+        } else if (password.length < 6) {
+            alert("La contraseña debe tener al menos 6 caracteres");
+        } else {
+            try {
+                await register({ email, password });
+                // Puedes redirigir a login o a otra página después del registro si lo deseas
+            } catch (error) {
+                alert("Error al registrar usuario");
+                console.log(error);
+            }
+        }
+    };
+
+    return (
+        <div className="RegisterPage">
+            <h1 className="regh1">Register</h1>
+            <h2 className="regh2">Ingresa tu mail</h2>
+            <input
+                className="regInput"
+                type="text"
+                placeholder="Escribe tu correo electrónico"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+            />
+            <h2 className="regh2">Ingresa y repite tu contraseña</h2>
+            <input
+                className="regInput"
+                type="password"
+                placeholder="Escribe tu contraseña"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+            />
+            <input
+                className="regInput"
+                type="password"
+                placeholder="Confirma tu contraseña"
+                name="password2"
+                value={formData.password2}
+                onChange={handleChange}
+            />
+            <Button variant="success" onClick={handleResult} className="regButton">
+                Registrarse
+            </Button>
+        </div>
+    );
+};
+
+export default RegisterPage;

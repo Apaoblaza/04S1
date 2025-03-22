@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
+import { UserContext } from "../context/UserContext";
 
 const Navbar = () => {
-  const { totalAmount,token,logout } = useContext(CartContext); // Accede al total del carrito desde el contexto
+  const { totalAmount } = useContext(CartContext); // Accede al total del carrito desde el contexto
+  const{token, logout}=useContext(UserContext);
+  const navigate=useNavigate();
 
 
   return (
