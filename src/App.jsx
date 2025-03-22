@@ -12,8 +12,10 @@ import Profile from "./pages/Profile";
 import { Route, Routes, Navigate } from "react-router-dom";
 import CartProvider,{CartContext} from "./context/CartContext";
 import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
 
 function App() {
+  const {login}=useContext(AuthContext);
   return (
     <CartProvider>
       <Navbar />
@@ -26,6 +28,7 @@ function App() {
         <Route path="/profile" element={<ProtectedProfile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <button onClick={()=>{login({email:"test@test.com",password:"123123"})}}>LOGIN</button>
       <Footer />
     </CartProvider>
   );
